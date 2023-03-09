@@ -1,0 +1,34 @@
+{% extends "files/base.html" %}
+{% load crispy_forms_filters%}
+{% block content %}
+<style>
+    .card-body{
+        border: 1px gray;
+        width: 600px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 2px 4px 6px 4px gray;
+    }
+</style>
+<div class="container">
+    {% if messages %}
+    {% for messages in messages%}
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      {{messages}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  {% endif %}
+</div>
+<div class="container card-body">
+<h1 class="lead" style="text-align: center;">Subscribe to Newsletter</h1><br>
+
+<form class="d-grid gap-2" method="POST">
+    {% csrf_token %}
+    <!-- <input type="email" placeholder="Email" name="email" class="form-control"> -->
+    {{form|crispy}}
+    <button class="btn btn-info">Subscribe</button>
+</form>
+</div>
+
+{% endblock %}
